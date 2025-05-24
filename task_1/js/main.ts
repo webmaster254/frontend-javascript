@@ -48,4 +48,22 @@ function printTeacher(firstName: string, lastName: string): string {
 }
     
 console.log(printTeacher('John', 'Doe'));
+   
+
+class StundentClass {
+    constructor(public firstName: string, public lastName: string) {
+    }
     
+    workOnHomework(): string {
+        return 'Currently working';
+    }
+    
+    displayName(): string {
+        return this.firstName;
+    }
+}
+
+const student1 = new StundentClass('John', 'Doe');
+console.log(student1.displayName());
+console.log(student1.workOnHomework());
+
