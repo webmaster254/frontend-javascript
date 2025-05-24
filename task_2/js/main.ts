@@ -49,3 +49,33 @@ function createEmployee(salary: number | string): Director | Teacher {
 console.log(createEmployee(200)); // Returns Teacher
 console.log(createEmployee(1000)); // Returns Director
 console.log(createEmployee('$500')); // Returns Director
+
+function isDirector(employee: Director | Teacher): employee is Director {
+    return (employee as Director).workDirectorTasks !== undefined;
+}
+
+function executeWork(employee: Director | Teacher): string {
+    if (isDirector(employee)) {
+        return employee.workDirectorTasks();
+    } else {
+        return employee.workTeacherTasks();
+    }
+}
+
+console.log(executeWork(createEmployee(200))); // Returns Teacher
+console.log(executeWork(createEmployee(1000))); // Returns Director
+console.log(executeWork(createEmployee('$500'))); // Returns Director
+
+// Define a String literal type allowing only Math or History
+type Subjects = 'Math' | 'History';
+
+function teachClass(todayClass: Subjects): string {
+    if (todayClass === 'Math') {
+        return 'Teaching Math';
+    } else if (todayClass === 'History') {
+        return 'Teaching History';
+    }
+}
+
+console.log(teachClass('Math')); // Returns 'Teaching Math'
+console.log(teachClass('History')); // Returns 'Teaching History'
